@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <CLANG_BUILD_DIR Condition=" '$(CLANG_BUILD_DIR)' == '' ">S:\b\llvm</CLANG_BUILD_DIR>
+    <LLDB_BUILD_DIR Condition=" '$(LLDB_BUILD_DIR)' == '' ">S:\b\lldb</LLDB_BUILD_DIR>
+    <LLVM_BUILD_DIR Condition=" '$(LLVM_BUILD_DIR)' == '' ">S:\b\llvm</LLVM_BUILD_DIR>
+    <SWIFT_BUILD_DIR Condition=" '$(SWIFT_BUILD_DIR)' == '' ">S:\b\swift</SWIFT_BUILD_DIR>
+    <SWIFT_SOURCE_DIR Condition=" '$(SWIFT_SOURCE_DIR)' == '' ">S:\swift</SWIFT_SOURCE_DIR>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <OutputPath>$([MSBuild]::NormalizePath($(MSBuildProjectDirectory)\bin))</OutputPath>
+    <IntermediateOutputPath>$([MSBuild]::NormalizePath($(MSBuildProjectDirectory)\obj))</OutputPath>
+  </PropertyGroup>
+</Project>

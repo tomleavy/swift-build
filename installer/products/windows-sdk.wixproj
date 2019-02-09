@@ -1,0 +1,17 @@
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <SchemaVersion>2.0</SchemaVersion>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <ProjectGuid>d3270c15-65d7-4c3a-81ce-dc0d89d802bb</ProjectGuid>
+    <ProductVersion>0.0.0</ProductVersion>
+    <OutputName>windows-sdk</OutputName>
+    <OutputType>Package</OutputType>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Include="windows-sdk.wxs" />
+  </ItemGroup>
+</Project>
+

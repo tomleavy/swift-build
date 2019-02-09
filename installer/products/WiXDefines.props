@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <DefineConstants>LLVM_BUILD_DIR=$(LLVM_BUILD_DIR);CLANG_BUILD_DIR=$(CLANG_BUILD_DIR);LLDB_BUILD_DIR=$(LLDB_BUILD_DIR);SWIFT_BUILD_DIR=$(SWIFT_BUILD_DIR);SWIFT_BUILD_DIR_LIB_SWIFT_SHIMS=$(SWIFT_BUILD_DIR)\lib\swift\shims;CLANG_BUILD_DIR_LIB_CLANG=$(CLANG_BUILD_DIR)\lib\clang;SWIFT_SOURCE_DIR=$(SWIFT_SOURCE_DIR)</DefineConstants>
+  </PropertyGroup>
+</Project>
+

@@ -1,0 +1,18 @@
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <SchemaVersion>2.0</SchemaVersion>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <ProjectGuid>efba7465-b325-4eee-bb39-96c076850ddf</ProjectGuid>
+    <ProductVersion>0.0.0</ProductVersion>
+    <OutputName>windows-runtime-amd64</OutputName>
+    <OutputType>Package</OutputType>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Include="windows-runtime.wxs" />
+  </ItemGroup>
+</Project>
+
+
