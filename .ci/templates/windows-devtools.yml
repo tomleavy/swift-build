@@ -130,25 +130,51 @@ jobs:
         displayName: Update PATH
 
       - task: CMake@1
+        displayName: Configure LLVM tools
+        inputs:
+          cmakeArgs:
+            -B $(Build.BinariesDirectory)/llvm-tools
+            -D CMAKE_BUILD_TYPE=Release
+            -D LLVM_ENABLE_ASSERTIONS=NO
+            -G Ninja
+            -S $(Build.SourcesDirectory)/toolchain/llvm
+
+      - task: CMake@1
+        displayName: Build LLVM tools
+        inputs:
+          cmakeArgs: --build $(Build.BinariesDirectory)/llvm-tools --target FileCheck
+
+      - task: CMake@1
         displayName: Configure llbuild
         inputs:
           cmakeArgs:
-            -G Ninja
-            -S $(Build.SourcesDirectory)/llbuild
             -B $(Build.StagingDirectory)/llbuild
             -C $(Build.SourcesDirectory)/swift-build/cmake/caches/${{ parameters.platform }}-${{ parameters.arch }}-clang.cmake
-            -D CMAKE_BUILD_TYPE=Release
             -D CMAKE_Swift_SDK=$(sdk.directory)
             -C $(Build.SourcesDirectory)/swift-build/cmake/caches/${{ parameters.platform }}-${{ parameters.arch }}-swift-flags.cmake
+            -D CMAKE_BUILD_TYPE=Release
             -D CMAKE_INSTALL_PREFIX=$(platform.directory)/Developer/SharedSupport/llbuild-$(llbuild.version)/usr
+            -D FILECHECK_EXECUTABLE=$(Build.BinariesDirectory)/llvm-tools/bin/FileCheck.exe
+            -D LIT_EXECUTABLE=$(Build.SourcesDirectory)/toolchain/llvm/utils/lit/lit.py
             -D LLBUILD_SUPPORT_BINDINGS=Swift
             -D SQLite3_LIBRARY=$(sqlite.directory)/usr/lib/SQLite3.lib
             -D SQLite3_INCLUDE_DIR=$(sqlite.directory)/usr/include
+            -G Ninja
+            -S $(Build.SourcesDirectory)/llbuild
 
       - task: CMake@1
         displayName: Build llbuild
         inputs:
           cmakeArgs: --build $(Build.StagingDirectory)/llbuild
+
+      - task: CMake@1
+        continueOnError: true
+        displayName: Test llbuild
+        inputs:
+          cmakeArgs: --build $(Build.StagingDirectory)/llbuild --target test-llbuild
+        env:
+          AR: $(toolchain.directory)/usr/bin/llvm-ar.exe
+          CLANG: $(toolchain.directory)/usr/bin/clang.exe
 
       - task: CMake@1
         displayName: Install llbuild
