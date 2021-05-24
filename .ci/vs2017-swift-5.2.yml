@@ -86,14 +86,6 @@ resources:
       name: apple/sourcekit-lsp
       ref: swift-5.2-branch
       endpoint: GitHub
-
-schedules:
-  - cron: "0 17 * * *"
-    branches:
-      include:
-        - master
-    always: true
-    displayName: "Daily (5:00 PM) Build"
 trigger:
   branches:
     include:
